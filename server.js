@@ -6,6 +6,7 @@ const blogRouter = require("./routes/blog-route")
 const router = require("./routes/user-route")
 const connectRouter = require("./routes/connection-route")
 const jwt = require('jsonwebtoken')
+const { application } = require('express')
 
 
 mongoose.connect('mongodb://localhost/Social', {
@@ -35,5 +36,6 @@ app.use(express.json())
 app.use("/api/user", router)
 app.use("/api/blog", blogRouter)
 app.use("/api/user/connection", connectRouter)
+// application.use("/admin")
 
 app.listen(process.env.PORT || 5005, ()=> {console.log("Server started at port 5005")})
