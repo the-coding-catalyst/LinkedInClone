@@ -12,18 +12,20 @@ const showFeed = async(req, res, next) => {
         friend = await User.findOne({email: connection})
         friend.blogs.forEach(async (blog) => {
             const blogExists = await Blog.findById(blog)
-            console.log(blogExists==true, "if blog")
-            if(blogExists.title != "") feed.push(blog)
+            console.log(blogExists, "if blog")
+            if(blogExists) feed.push(blog)
+            console.log(feed, "this is feed--------")
         })
         
         friend.likedBlogs.forEach(async (blog) => {
             const blogExists = await Blog.findById(blog)
             console.log(blogExists, "if blog")
-            if(blogExists.title != "") feed.push(blog)
+            if(blogExists) feed.push(blog)
         })
     })
-    await user.save()
-    return res.status(200).json({feed})
+    console.log(feed)
+    // await user.save()
+    return res.send(feed)
 
 }
 
