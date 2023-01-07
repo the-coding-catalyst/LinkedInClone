@@ -6,26 +6,22 @@ const showFeed = async(req, res, next) => {
     console.log("request was here..")
     let userEmail = loggedInUserInfo(req)
     let user = await User.findOne({email: userEmail})
-    let firstConnections = user.connections
+    let firstConnections = await user.connections
     var feed = []
+    var blogs = []
     firstConnections.forEach(async (connection) => {
-        friend = await User.findOne({email: connection})
-        friend.blogs.forEach(async (blog) => {
-            const blogExists = await Blog.findById(blog)
-            console.log(blogExists, "if blog")
-            if(blogExists) feed.push(blog)
-            console.log(feed, "this is feed--------")
-        })
-        
-        friend.likedBlogs.forEach(async (blog) => {
-            const blogExists = await Blog.findById(blog)
-            console.log(blogExists, "if blog")
-            if(blogExists) feed.push(blog)
-        })
+        const friend = await User.findOne({email: connection})
+        feed = feed.concat(friend.likedBlogs, friend.blogs)
     })
-    console.log(feed)
-    // await user.save()
-    return res.send(feed)
+
+    // blogs.forEach(async (blog)=>{
+    //     const ifBlogExists = await Blog.findById(blog)
+    //     if(ifBlogExists) feed.push(blog)
+    // })
+
+    await user.save()
+    
+    return res.status(200).json({feed})
 
 }
 

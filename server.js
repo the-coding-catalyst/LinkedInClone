@@ -10,11 +10,15 @@ const { application } = require('express')
 const adminRouter = require('./routes/admin-route')
 const feedRouter = require('./routes/feed-route')
 
-
-// mongoose.connect('mongodb+srv://ramit:Corporatekimkb69@@cluster0.8fdlu.mongodb.net/?retryWrites=true&w=majority')
-mongoose.connect("mongodb+srv://ramit:Corporatekimkb69@@cluster0.8fdlu.mongodb.net/?retryWrites=true&w=majority", ()=>{
-    console.log("connected to db")
+mongoose.connect('mongodb://localhost/Social', {
+    useNewUrlParser: true, useUnifiedTopology: true
 })
+
+
+
+// mongoose.connect('mongodb+srv://ramit:ramit@cluster0.8fdlu.mongodb.net/Social?retryWrites=true&w=majority', (err)=>{
+//     console.log("connected to db")
+// })
 app.post("/*", async (req, res, next) => {
     const unrestrictedPaths = ["/api/user/login", "/api/user/signup", "/api/blog"]
     if(!unrestrictedPaths.includes(req.path)){

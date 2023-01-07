@@ -8,6 +8,8 @@ const loggedInUserInfo = (req) => {
     return userInfo.email
 }
 
+
+
 const ifRequestAlreadySent = async(firstUser, secondUser) => {
     let firstUserEmail = firstUser.email
     let secondUserEmail = secondUser.email
