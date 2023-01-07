@@ -147,4 +147,5 @@ module.exports = {
     acceptConnectionRequest, 
     seeConnectionRequests, 
     seeConnectionsList,
-    searchUser}
+    searchUser,
+    loggedInUserInfo}

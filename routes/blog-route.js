@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllBlogs, createABlog, deleteABlog, updateABlog, getBlogById, getBlogByUser } = require('../controllers/blog-controller')
+const { getAllBlogs, createABlog, deleteABlog, updateABlog, getBlogById, getBlogByUser, likeBlogInFeed } = require('../controllers/blog-controller')
 const blog = require('../model/blog')
 const blogRouter = express.Router()
 
@@ -9,5 +9,6 @@ blogRouter.delete("/:id", deleteABlog)
 blogRouter.put("/:id", updateABlog)
 blogRouter.get("/:id", getBlogById)
 blogRouter.get("/user/:id", getBlogByUser)
+blogRouter.post("/like", likeBlogInFeed)
 
 module.exports = blogRouter

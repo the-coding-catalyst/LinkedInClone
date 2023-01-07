@@ -8,6 +8,7 @@ const connectRouter = require("./routes/connection-route")
 const jwt = require('jsonwebtoken')
 const { application } = require('express')
 const adminRouter = require('./routes/admin-route')
+const feedRouter = require('./routes/feed-route')
 
 
 mongoose.connect('mongodb://localhost/Social', {
@@ -33,7 +34,7 @@ app.post("/*", async (req, res, next) => {
     next()
 })
 app.use(express.json())
-
+app.use("/api/user/feed", feedRouter)
 app.use("/api/user", router)
 app.use("/api/blog", blogRouter)
 app.use("/api/user/connection", connectRouter)

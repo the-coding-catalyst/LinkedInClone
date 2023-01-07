@@ -32,6 +32,15 @@ const userSchema = new mongoose.Schema({
     sentRequests: [{
         type: String,
         required: false
+    }],
+    likedBlogs: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Blog",
+        required: true
+    }],
+    feed: [{type: mongoose.Types.ObjectId,
+        ref: "Blog",
+        required: false
     }]
 
 })
