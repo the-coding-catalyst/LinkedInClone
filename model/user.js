@@ -41,7 +41,27 @@ const userSchema = new mongoose.Schema({
     feed: [{type: mongoose.Types.ObjectId,
         ref: "Blog",
         required: false
-    }]
+    }],
+    followers: [{type: mongoose.Types.ObjectId,
+        ref: "Blog",
+        required: true}],
+    
+    followings: [{type: mongoose.Types.ObjectId,
+        ref: "Blog",
+        required: true}],
+
+    totalFollowers: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    totalFollowings: {
+        type: Number,
+        required: false,
+        default: 0
+    }
+    
+
 
 })
 

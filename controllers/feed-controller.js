@@ -2,6 +2,7 @@ const User = require('../model/user')
 const { loggedInUserInfo } = require('./connections-controller')
 const Blog = require("../model/blog")
 
+
 const showFeed = async(req, res, next) => {
     console.log("request was here..")
     let userEmail = loggedInUserInfo(req)

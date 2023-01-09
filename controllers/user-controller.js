@@ -34,7 +34,7 @@ const signUpUser = async (req, res, next) => {
     try{
         const hashedPassword = bcrypt.hashSync(password)
         var user = new Users({
-            name, email, password: hashedPassword, blogs: [], connections:[], connectionsRequests:[], sentRequests:[]
+            name, email, password: hashedPassword, followers: [], totalFollowers:0, totalFollowings: 0, followings: [], blogs: [], connections:[], connectionsRequests:[], sentRequests:[]
         })
         await user.save()
     }catch(err){

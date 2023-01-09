@@ -19,7 +19,17 @@ const blogSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
         required: false
-    }]
+    }],
+    comments: [{
+        type: mongoose.Types.ObjectId,
+        ref: "Comment",
+        required: false
+    }],
+    createdAt: {
+        type: Date,
+        required: true
+    }
+
 })
 
 module.exports = mongoose.model('Blog', blogSchema)

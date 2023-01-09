@@ -37,12 +37,14 @@ const createABlog = async(req, res, next) => {
     }catch(err){
         return console.log(err)
     }
+    
     if(!blogUser) return res.status(404).json({message: "User doesn't exist"})
     const ifUserAuthorized = await checkAuthorisation(req, blogUser)
     if(!ifUserAuthorized) return res.status(401).json({message: "User Unauthorized"})
     let newBlog
+    var currentTime = new Date()
     try{
-       newBlog = await new Blog({title, description, user: blogUser})
+       newBlog = await new Blog({title, description, user: blogUser, createdAt: currentTime})
     }catch(err){
         return console.log(err)
     }
@@ -130,7 +132,7 @@ const getBlogByUser = async (req, res, next) => {
 const likeBlogInFeed = async (req, res, next) => {
     let blog
     try {
-        blog = await Blog.findById(req.body.id)
+        blog = await Blog.findById(req.params.id)
         console.log(blog)
         
     }catch(err){

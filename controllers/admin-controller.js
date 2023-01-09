@@ -1,5 +1,7 @@
 const { ConnectionStates } = require('mongoose')
 const User = require('../model/user')
+const users = require("../addUsers")
+const Blog = require('../model/blog')
 
 const addConnections = async(req, res, next) => {
     const {emailOne, emailTwo} = req.body
@@ -20,4 +22,37 @@ const addConnections = async(req, res, next) => {
 
 }
 
-module.exports = {addConnections}
+const addUser = async(req, res, next) => {
+    const usersArray = users["users"]
+    // console.log(usersArray)
+    let user
+    usersArray.forEach(async(userInfo) => {
+        console.log(userInfo, "userinfo")
+        let userExist
+    try{
+        userExist = await User.findOne({email: userInfo.email})
+    }catch(err){
+        console.log(err)
+        return res.status(500).json(err)
+    }
+    if(userExist) return res.status(400).json({message: "User already exists..."})
+    user = new User({name, email, password, blogs, connections, connectionsRequests, sentRequests, likedBlogs, feed})
+    console.log(user, "------------------")
+    await user.save()
+    })
+    
+    
+    return res.status(201).json({user})
+}
+
+
+const deleteAll = async (req, res, next) => {
+    const value = req.body.value
+    let toDelete
+    if(value == "user") toDelete = await User.deleteMany()
+    else toDelete = await Blog.deleteMany() 
+    
+    return res.status(204).json({message: "deleted"})
+}
+
+module.exports = {addConnections, addUser, deleteAll}
