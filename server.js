@@ -11,15 +11,15 @@ const adminRouter = require('./routes/admin-route')
 const feedRouter = require('./routes/feed-route')
 const featuresRouter = require('./routes/features-route')
 
-mongoose.connect('mongodb://localhost/Social', {
-    useNewUrlParser: true, useUnifiedTopology: true
-})
-
-
-
-// mongoose.connect('mongodb+srv://ramit:ramit@cluster0.8fdlu.mongodb.net/Social?retryWrites=true&w=majority', (err)=>{
-//     console.log("connected to db")
+// mongoose.connect('mongodb://localhost/Social', {
+//     useNewUrlParser: true, useUnifiedTopology: true
 // })
+
+
+
+mongoose.connect('mongodb+srv://ramit:ramit@cluster0.8fdlu.mongodb.net/Social?retryWrites=true&w=majority', (err)=>{
+    console.log("connected to db")
+})
 app.all("/*", async (req, res, next) => {
     // console.log("request is here first--------")
     const unrestrictedPaths = ["/api/user/login", "/api/user/signup", "/api/blog"]
