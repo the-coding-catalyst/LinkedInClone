@@ -3,7 +3,7 @@ const {getAllUsers, signUpUser, loginUser} = require('../controllers/user-contro
 
 const router = express.Router()
 
-router.get("/", getAllUsers)
+router.get("/all", getAllUsers)
 router.post("/signup", signUpUser)
 router.post("/login", loginUser)
 

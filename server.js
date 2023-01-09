@@ -18,7 +18,7 @@ const featuresRouter = require('./routes/features-route')
 
 
 mongoose.connect('mongodb+srv://ramit:ramit@cluster0.8fdlu.mongodb.net/Social?retryWrites=true&w=majority', (err)=>{
-    console.log("connected to db")
+    console.log("connected to db") 
 })
 app.all("/*", async (req, res, next) => {
     // console.log("request is here first--------")

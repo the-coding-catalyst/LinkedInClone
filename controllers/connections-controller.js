@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 
 const loggedInUserInfo = (req) => {
     let token = req.headers.cookie
+    if(!token) return res.status(403).json({message: "Please log in first"})
     token = token.slice(4, token.length)
     const userInfo = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     return userInfo.email

@@ -60,8 +60,8 @@ const createABlog = async(req, res, next) => {
         console.log(err)
         return res.status(500).json({message: err})
     }
-    
-    return res.status(201).json({message: "Blog created"})
+    const blogInfo = {blogId: newBlog.id, title: newBlog.title, description: newBlog.description, createdAt: currentTime}
+    return res.status(201).json(blogInfo)
 }
 
 const deleteABlog = async(req, res, next) => {

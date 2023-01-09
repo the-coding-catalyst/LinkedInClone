@@ -83,7 +83,7 @@ const commentOnBlog = async (req, res, next) => {
     if(!blog) return res.status(404).json({message: "Blog not found with given id.."})
     const userEmail = loggedInUserInfo(req)
     const user = await User.findOne({email: userEmail})
-    const comment = new Comments({user, blog, content})
+    const comment = new Comments({user, blog, content, createdAt: new Date()})
     blog.comments.push(comment)
     await comment.save()
     await blog.save()
@@ -107,4 +107,11 @@ const postsByCurrentUser = async (req, res, next) => {
     await user.save()
     return res.status(200).json(result)
 }
-module.exports = {followUser, unfollowUser, unlikeBlog, commentOnBlog, postsByCurrentUser}
+
+const userInfo = async(req, res, next) => {
+    const userEmail = loggedInUserInfo(req)
+    const user = await User.findOne({email: userEmail})
+    const result = {name: user.name, followers: user.totalFollowers, followings: user.totalFollowings}
+    return res.status(200).json(result)
+}
+module.exports = {userInfo, followUser, unfollowUser, unlikeBlog, commentOnBlog, postsByCurrentUser}

@@ -60,7 +60,7 @@ const loginUser = async(req, res, next) => {
     res.cookie("jwt", accessToken)
     
     // console.log(res.cookie, "cookie object info")
-    res.status(200).json({message: "Login Successful"})
+    res.status(200).json({message: "Login Successful", jwt: accessToken})
     
 }
 
