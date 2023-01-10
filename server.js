@@ -32,7 +32,7 @@ app.all("/*", async (req, res, next) => {
             try{
                 if(err){return res.status(403).json({err})}
             }catch(err){
-                return console.log(err)
+                return res.status(401).json(err)
             }
             req.user = user
         })
