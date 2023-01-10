@@ -30,5 +30,21 @@
     * GET /api/post/:id : Get blog by id
     * GET /api/all_posts : All posts by current user.
     * GET /api/user/feed: Get all posts in feed for authenticated user.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ # Docker Immage pulic Link
+ 
+ https://hub.docker.com/r/ramitnitp/social-media/tags
+ 
+ 
  
 
