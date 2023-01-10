@@ -41,7 +41,7 @@
     
     
     
- # Docker Immage pulic Link
+ ## Docker Image pulic Link
  
  https://hub.docker.com/r/ramitnitp/social-media/tags
  
