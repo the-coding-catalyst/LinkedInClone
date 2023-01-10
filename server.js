@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://ramit:ramit@cluster0.8fdlu.mongodb.net/Social?re
 })
 app.all("/*", async (req, res, next) => {
     // console.log("request is here first--------")
-    const unrestrictedPaths = ["/api/user/login", "/api/user/signup", "/api/blog"]
+    const unrestrictedPaths = ["/api/user/login", "/api/user/signup", "/api/blog" ,"/hi"]
     if(!unrestrictedPaths.includes(req.path)){
         let token = req.headers.cookie
         // console.log(token, "this is cookie")
@@ -48,5 +48,9 @@ app.use("/api/blog", blogRouter)
 app.use("/api/user/connection", connectRouter)
 app.use("/admin", adminRouter)
 app.use("/api", featuresRouter)
+
+app.get('/hi',(req,res)=>{
+    res.json({"hi":"Welcome"})
+})
 
 app.listen(process.env.PORT || 5005, ()=> {console.log("Server started at port 5005")})
